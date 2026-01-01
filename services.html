@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Construction Wala</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Construction<span class="text-accent">Wala</span></a>
+            <button class="mobile-menu-btn"><i data-lucide="menu"></i></button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link nav-active"
+                        style="color: var(--text-primary); border-bottom: 2px solid var(--accent-gold);">Services</a>
+                </li>
+                <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#" class="btn btn-primary" onclick="openBookingModal('General Inquiry')">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="section" style="padding-top: 150px; padding-bottom: 2rem;">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; text-align: center; margin-bottom: 1rem;">Our <span
+                    class="text-accent">Services</span></h1>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;">
+                From minor repairs to major renovations, we have experts for every need.
+            </p>
+
+            <!-- Search Bar -->
+            <div style="max-width: 600px; margin: 0 auto 3rem; position: relative;">
+                <input type="text" id="service-search" placeholder="Search for a service (e.g. Plumbing, Paint)..."
+                    style="width: 100%; padding: 1.2rem 1.5rem; border-radius: 50px; border: 1px solid var(--glass-border); background: white; color: var(--text-primary); font-size: 1.1rem; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <i data-lucide="search"
+                    style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Services Grid -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));"
+                id="all-services-grid">
+                <!-- Services injected via JS -->
+            </div>
+            <div id="no-results"
+                style="display: none; text-align: center; color: var(--text-secondary); font-size: 1.2rem; margin-top: 2rem;">
+                No services found matching your search.
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal (Consistent with index.html) -->
+    <div id="booking-modal" class="modal-overlay"
+        style="display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-content"
+            style="padding: 2.5rem; border-radius: 16px; max-width: 500px; width: 90%; position: relative;">
+            <button onclick="closeBookingModal()"
+                style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-primary); cursor: pointer;"><i
+                    data-lucide="x"></i></button>
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Book <span class="text-accent">Service</span></h3>
+            <form id="booking-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" name="name" placeholder="Your Name" required
+                    style="padding: 14px; border-radius: 8px; border: 1px solid #ddd; background: #f9f9f9; color: var(--text-primary);">
+                <input type="tel" name="phone" placeholder="Phone Number" required
+                    style="padding: 14px; border-radius: 8px; border: 1px solid #ddd; background: #f9f9f9; color: var(--text-primary);">
+                <input type="email" name="email" placeholder="Email Address"
+                    style="padding: 14px; border-radius: 8px; border: 1px solid #ddd; background: #f9f9f9; color: var(--text-primary);">
+                <input type="text" name="service" id="modal-service-input" placeholder="Service Type" readonly
+                    style="padding: 14px; border-radius: 8px; border: 1px solid #ddd; background: #eee; color: var(--text-secondary);">
+                <textarea name="details" placeholder="Problem Details / Address" rows="4"
+                    style="padding: 14px; border-radius: 8px; border: 1px solid #ddd; background: #f9f9f9; color: var(--text-primary); resize: none;"></textarea>
+                <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">Confirm
+                    Booking</button>
+            </form>
+            <div id="success-msg" style="display: none; text-align: center; margin-top: 1rem;">
+                <div style="color: #4CAF50; font-size: 3rem; margin-bottom: 10px;">✓</div>
+                <p style="font-size: 1.2rem; font-weight: 600;">Request Sent Successfully!</p>
+                <p style="color: var(--text-secondary);">We will contact you shortly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 3rem;">
+                <div>
+                    <a href="#" class="logo"
+                        style="margin-bottom: 1rem; display: block; color: white;">Construction<span
+                            class="text-accent">Wala</span></a>
+                    <p style="color: #888; max-width: 300px;">Providing top-notch home maintenance, repair,
+                        and renovation services with a focus on quality and trust.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem; color: white;">Quick Links</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="index.html" style="color: #888; text-decoration: none;">Home</a></li>
+                        <li><a href="services.html" style="color: #888; text-decoration: none;">Services</a>
+                        </li>
+                        <li><a href="index.html#reviews" style="color: #888; text-decoration: none;">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem; color: white;">Contact</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li style="color: #888;"><i data-lucide="phone"
+                                style="width: 16px; display: inline-block; margin-right: 5px;"></i> +91 98765 43210</li>
+                        <li style="color: #888;"><i data-lucide="mail"
+                                style="width: 16px; display: inline-block; margin-right: 5px;"></i>
+                            help@constructionwala.com</li>
+                        <li style="color: #888;"><i data-lucide="map-pin"
+                                style="width: 16px; display: inline-block; margin-right: 5px;"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; color: #666;">
+                <p>&copy; 2024 Construction Wala. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
